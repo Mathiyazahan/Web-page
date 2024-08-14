@@ -1,8 +1,14 @@
+# Use the official Node.js image
+FROM node:18-alpine
 
-FROM nginx:alpine
+# Set the working directory
+WORKDIR /app
 
-COPY index.html /usr/share/nginx/html/index.html
+# Copy the HTML file into the container
+COPY index.html /app/index.html
 
-EXPOSE 8080
+# Install a simple HTTP server
+RUN npm install -g http-server
 
-CMD ["nginx", "-g", "daemon off;"]
+# Start the HTTP server
+CMD ["http-server", "-p", "8080"]
