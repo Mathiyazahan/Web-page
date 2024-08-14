@@ -1,36 +1,32 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+const express = require('express');
+const os = require('os');
 
-// Define the port
-const port = 8080;
+const app = express();
 
-// Create the HTTP server
-const server = http.createServer((req, res) => {
-    if (req.url === '/pod-ip') {
-        // Respond with the Pod IP address
-        console.log("server pod-ip")
-        
-        const podIp = req.connection.localAddress || os.networkInterfaces(); 
-        console.log(req)
-        res.json({ podIp });
+// Function to get the pod IP address
+function getPodIp() {
+    const interfaces = os.networkInterfaces();
+    let podIp = 'IP not found';
 
-    } else {
-        // Serve the static HTML file
-        console.log("server pod-ip not showing")
-        fs.readFile(path.join(__dirname, 'index.html'), (err, data) => {
-            if (err) {
-                res.writeHead(500);
-                res.end('Error loading index.html');
-                return;
+    for (const iface of Object.values(interfaces)) {
+        for (const alias of iface) {
+            if (alias.family === 'IPv4' && !alias.internal) {
+                podIp = alias.address;
+                break;
             }
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            res.end(data);
-        });
+        }
     }
+
+    return podIp;
+}
+
+// API to get the pod IP address
+app.get('/pod-ip', (req, res) => {
+    const podIp = getPodIp();
+    res.json({ podIp });
 });
 
-// Start the server
-server.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
