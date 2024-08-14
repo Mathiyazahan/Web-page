@@ -8,6 +8,7 @@
         async function fetchPodIP() {
             try {
                 let response = await fetch('/pod-ip');
+                console.log("Html pod-ip")
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
