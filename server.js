@@ -10,9 +10,11 @@ const server = http.createServer((req, res) => {
     if (req.url === '/pod-ip') {
         // Respond with the Pod IP address
         console.log("server pod-ip")
-        console.log(process)
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify({ ip: process.env.POD_IP || 'unknown' }));
+        
+        const podIp = req.connection.localAddress || os.networkInterfaces(); 
+        console.log(req)
+        res.json({ podIp });
+
     } else {
         // Serve the static HTML file
         console.log("server pod-ip not showing")
