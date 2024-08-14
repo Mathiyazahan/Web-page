@@ -1,10 +1,11 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const os = require('os');
 
+// Define the port
 const port = 8080;
 
+// Create the HTTP server
 const server = http.createServer((req, res) => {
     if (req.url === '/pod-ip') {
         // Respond with the Pod IP address
@@ -24,6 +25,7 @@ const server = http.createServer((req, res) => {
     }
 });
 
+// Start the server
 server.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
 });
