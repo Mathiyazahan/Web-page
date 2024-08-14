@@ -27,6 +27,7 @@ app.get('/pod-ip', (req, res) => {
 });
 
 app.get('/', (req, res) => {
+    console.log("Fetching pod ip ")
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
