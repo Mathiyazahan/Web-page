@@ -3,6 +3,8 @@ const os = require('os');
 const path = require('path');
 const app = express();
 
+let count = 0;
+
 // Function to get the pod IP address
 function getPodIp() {
     const interfaces = os.networkInterfaces();
@@ -27,7 +29,7 @@ app.get('/pod-ip', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    console.log("Fetching pod ip ")
+    console.log("Fetching pod ip ${count++}")
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
