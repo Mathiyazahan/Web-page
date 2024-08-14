@@ -19,11 +19,30 @@
                 document.getElementById('ip').textContent = 'Unable to fetch IP address: ' + error.message;
             }
         }
-        window.onload = fetchPodIP;
+        async function fetchhostname() {
+            try {
+                let response = await fetch('/host-name');
+                console.log("pod hostname")
+                if (!response.ok) {
+                    throw new Error(' not ok');
+                }
+                let data = await response.json();
+                console.log(data)
+                document.getElementById('hostname').textContent = data.hostname;
+            } catch (error) {
+                document.getElementById('ip').textContent = 'Unable to fetch : ' + error.message;
+            }
+        }
+        window.onload = function() {
+            fetchPodIP();
+         fetchhostname();
+        }
     </script>
 </head>
 <body>
     <h1>Pod IP Address</h1>
     <p>The IP address of this Pod is: <span id="ip">Fetching...</span></p>
+    <h1>Hostname</h1>
+    <p>Hostname of the pod <span id="hostname">Fetching...</span></p>
 </body>
 </html>
