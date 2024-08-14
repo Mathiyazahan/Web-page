@@ -9,10 +9,12 @@ const port = 8080;
 const server = http.createServer((req, res) => {
     if (req.url === '/pod-ip') {
         // Respond with the Pod IP address
+        console.log("server pod-ip")
         res.writeHead(200, {'Content-Type': 'application/json'});
         res.end(JSON.stringify({ ip: process.env.POD_IP || 'unknown' }));
     } else {
         // Serve the static HTML file
+        console.log("server pod-ip not showing")
         fs.readFile(path.join(__dirname, 'index.html'), (err, data) => {
             if (err) {
                 res.writeHead(500);
