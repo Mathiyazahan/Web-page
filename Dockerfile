@@ -4,11 +4,14 @@ FROM node:18-alpine
 # Set the working directory
 WORKDIR /app
 
-# Copy the HTML file into the container
-COPY index.html /app/index.html
+# Copy the application files
+COPY server.js index.html /app/
 
-# Install a simple HTTP server
-RUN npm install -g http-server
+# Install necessary packages (if any)
+RUN npm install
 
-# Start the HTTP server
-CMD ["http-server", "-p", "8080"]
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Start the server
+CMD ["node", "server.js"]
