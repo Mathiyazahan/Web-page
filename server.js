@@ -22,10 +22,20 @@ function getPodIp() {
     return podIp;
 }
 
+function getPodHostname() { 
+    return os.hostname(); 
+}
+
+
 // API to get the pod IP address
 app.get('/pod-ip', (req, res) => {
     const podIp = getPodIp();
     res.json({ podIp });
+});
+
+app.get('/host-name', (req, res) => {
+    const hostname = getPodHostname();
+    res.json({ hostname });
 });
 
 app.get('/', (req, res) => {
