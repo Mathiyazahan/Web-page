@@ -14,7 +14,7 @@
                 }
                 let data = await response.json();
                 console.log(data)
-                document.getElementById('ip').textContent = data.ip;
+                document.getElementById('ip').textContent = data.podIp;
             } catch (error) {
                 document.getElementById('ip').textContent = 'Unable to fetch IP address: ' + error.message;
             }
