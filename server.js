@@ -29,7 +29,7 @@ app.get('/pod-ip', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    console.log("Fetching pod ip ${count++}")
+    console.log(`Fetching pod ip ${count++}`)
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
