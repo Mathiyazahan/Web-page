@@ -15,7 +15,7 @@ app.get('/info', (req, res) => {
         podIP: podIP
     });
 });
-
+ 
 app.listen(port, () => {
     console.log(`Server running at http://0.0.0.0:${port}/`);
 });
