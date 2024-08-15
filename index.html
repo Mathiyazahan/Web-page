@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pod Information</title>
+</head>
+<body>
+    <h1>Pod Information</h1>
+    <p><strong>Pod Hostname:</strong> <span id="pod-hostname">Loading...</span></p>
+    <p><strong>Pod ID:</strong> <span id="pod-id">Loading...</span></p>
+    <script>
+        fetch('/info')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('pod-hostname').innerText = data.hostname;
+                document.getElementById('pod-id').innerText = data.podId;
+            })
+            .catch(error => {
+                document.getElementById('pod-hostname').innerText = 'Error';
+                document.getElementById('pod-id').innerText = 'Error';
+            });
+    </script>
+</body>
+</html>
