@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
               <p>Pod Hostname: ${hostname}</p>
               <p>Pod IP Address: ${podIp}</p>`);
 });
-
+ 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
