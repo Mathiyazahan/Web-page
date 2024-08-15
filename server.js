@@ -8,6 +8,7 @@ let count = 0;
 // Function to get the pod IP address
 function getPodIp() {
     const interfaces = os.networkInterfaces();
+    console.log('Network Interfaces:', interfaces); // Debugging line
     for (const iface of Object.values(interfaces)) {
         for (const alias of iface) {
             if (alias.family === 'IPv4' && !alias.internal) {
