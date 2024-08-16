@@ -3,9 +3,15 @@ const os = require('os');
 const app = express();
 const port = process.env.PORT || 8080;
 
+let count=0;
+
 app.get('/', (req, res) => {
     const podIp = getPodIp();
     const hostname = os.hostname();
+    console.log(`Count  ${count++}`);
+    console.log(`Server running on hostname ${hostname}`);
+    console.log(`Server running on podIp ${podIp}`);
+    
     res.send(`<h1>Pod Information</h1>
               <p>Pod Hostname: ${hostname}</p>
               <p>Pod IP Address: ${podIp}</p>`);
