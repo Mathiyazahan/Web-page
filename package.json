@@ -7,6 +7,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.18.2"
-  }
+  "axios": "^0.21.1", // or another version number
+  "express": "^4.17.1",
+  "os": "^0.1.1"
+}
 }
