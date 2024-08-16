@@ -11,7 +11,8 @@ app.get('/', (req, res) => {
     console.log(`Count  ${count++}`);
     console.log(`Server running on hostname ${hostname}`);
     console.log(`Server running on podIp ${podIp}`);
-    
+    console.log("\n");
+
     res.send(`<h1>Pod Information</h1>
               <p>Pod Hostname: ${hostname}</p>
               <p>Pod IP Address: ${podIp}</p>`);
